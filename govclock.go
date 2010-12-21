@@ -1,3 +1,6 @@
+// govclock - Vector clock support for Go.
+// 
+// Copyright (c) 2010, Gustavo Niemeyer <gustavo@niemeyer.net>
 package govclock
 
 import (
