@@ -2,7 +2,7 @@ package govclock_test
 
 
 import (
-    . "gocheck"
+    . "launchpad.net/gocheck"
     "testing"
     "govclock"
     "bytes"
