@@ -2,7 +2,8 @@ package vclock_test
 
 import (
 	"bytes"
-	"labix.org/v1/vclock"
+	"encoding/json"
+	"github.com/jbondeson/vclock"
 	. "launchpad.net/gocheck"
 	"testing"
 )
@@ -341,4 +342,16 @@ func (s *S) TestTruncate(c *C) {
 		cmt := Commentf("Truncation test %d failed: %s: %#v", testN, test.summary, truncated.Bytes())
 		c.Assert(truncated.Compare(after, vclock.Equal), Equals, true, cmt)
 	}
+}
+
+func (s *S) TestJson(c *C) {
+	vc1 := vclock.New()
+	vc1.Update("a", 1)
+
+	j1, _ := json.Marshal(vc1)
+
+	var vc2 *vclock.VClock
+	_ = json.Unmarshal(j1, &vc2)
+
+	c.Assert(vc1, DeepEquals, vc2)
 }
